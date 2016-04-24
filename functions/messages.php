@@ -16,6 +16,6 @@ $nyanja_alerts = array(
 
   //Fishing Gear
   "Gear General" => "Kugwiritsa ntchito zida pomwe nsomba",
-  "Gear Jacket" = "Chonde ntchito moyo jekete pamene inu kupita kukawedza kapena chidebe waukulu kuthandiza ndi kuyandama"
+  "Gear Jacket" => "Chonde ntchito moyo jekete pamene inu kupita kukawedza kapena chidebe waukulu kuthandiza ndi kuyandama"
 )
 ?>

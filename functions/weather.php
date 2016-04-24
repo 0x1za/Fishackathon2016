@@ -1,6 +1,6 @@
 <?php
 //Include Error Messages
-include(messages.php);
+include("messages.php");
 
 function getWeather($key, $city){
   global $temperature;
@@ -21,6 +21,8 @@ function getWeather($key, $city){
   $condition = $weather->current->condition->text.'<br>';
 }
 
+
+
 function accessRisk($wind, $condition){
   if($wind >= 25){
     $risk = 0;
@@ -37,11 +39,17 @@ function accessRisk($wind, $condition){
 function accessConditions($condition){
   $conditions = array('Cloudy', 'Sunny', 'Raining');
   if($condition == $conditions[0]){
-    $message = $messages[0];
+   return $message = $messages[0];
   } elseif($condition == $conditions[1]){
-    $message = $messages[];
+   return $message = $messages[1];
+  }
+  else if($condition==$conditions[2]){
+	 return $messages = $messages[2];
+	  
   }
 }
+getWeather("Kariba","e16cc1edb75e012ecabd85ad9d0e66601cd08ba5");
+accessRisk(25,10);
+accessConditions();
 
-accessRisk(25);
 ?>
