@@ -1,43 +1,35 @@
 <?php
+function stations($city){
+  $key = "01def7821ddc40c3a9c150301161804";
+  $url = 'http://api.apixu.com/v1/current.json?key='.$key.'&q='.$city.'';
 
-    $key = "01def7821ddc40c3a9c150301161804";
-    $city = 'Kariba';
-    $url = 'http://api.apixu.com/v1/current.json?key='.$key.'&q='.$city.'';
+  $ch = curl_init();
+  curl_setopt($ch,CURLOPT_URL,$url);
+  curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
-    $ch = curl_init();
-    curl_setopt($ch,CURLOPT_URL,$url);
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+  $json_output=curl_exec($ch);
+  $weather = json_decode($json_output);
+  echo "Region: ".$weather->location->region;
+  echo "<br>";
+  echo "Country: ".$weather->location->country;
+  echo "<br>";
+  echo "Lat: ".$weather->location->lat." , Lon:".$weather->location->lon;
 
-    $json_output=curl_exec($ch);
-    $weather = json_decode($json_output);
-    echo "<h1>Current Weather</h1>";
-    echo "<h2>Location</h2>";
-    echo "City: ". $weather->location->name;
-    echo "<br>";
-    echo "Region: ".$weather->location->region;
-    echo "<br>";
-    echo "Country: ".$weather->location->country;
-    echo "<br>";
-    echo "Lat: ".$weather->location->lat." , Lon:".$weather->location->lon;
+  echo "<h3>Temprature</h3>";
 
-    echo "<h2>Temprature</h2>";
+  echo "Temperature (&deg;C): " . $weather->current->temp_c; echo "<br>";
+  echo "Feels like (&deg;C)". $weather->current->feelslike_c;
+  echo "Temperature (&deg;F): " . $weather->current->temp_f; echo "<br>";
+  echo "Feels like (&deg;F)". $weather->current->feelslike_f;
+  echo "<br>";
+  echo "Condition: <img src='" . $weather->current->condition->icon ."'>" . $weather->current->condition->text;
+  echo "<h3>Wind</h3>";
+  echo $weather->current->wind_mph." mph <br>";
+  echo $weather->current->wind_kph." kph <br>";
+  echo $weather->current->wind_degree."&deg;  " . $weather->current->wind_dir."<br>";
+  echo "Humidity: ".$weather->current->humidity;
+  echo "<br>";
 
-    echo "<br>";
-    echo "Temperature (&deg;C): " . $weather->current->temp_c; echo "<br>";
-    echo "Feels like (&deg;C)". $weather->current->feelslike_c;
-            echo "<br>";
-    echo "<br>";
-    echo "Temperature (&deg;F): " . $weather->current->temp_f; echo "<br>";
-    echo "Feels like (&deg;F)". $weather->current->feelslike_f;
-    echo "<br>";
-    echo "Condition: <img src='" . $weather->current->condition->icon ."'>" . $weather->current->condition->text;
-
-    echo "<h2>Wind</h2>";
-    echo $weather->current->wind_mph." mph <br>";
-    echo $weather->current->wind_kph." kph <br>";
-    echo $weather->current->wind_degree."&deg;  " . $weather->current->wind_dir."<br>";
-    echo "Humidity: ".$weather->current->humidity;
-    echo "<br><br><br>";
-
-    echo "Updated On: ".$weather->current->last_updated;
+  echo "Updated On: ".$weather->current->last_updated;
+}
  ?>

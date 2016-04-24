@@ -48,7 +48,30 @@ function accessConditions($condition){
 	  
   }
 }
-getWeather("Kariba","e16cc1edb75e012ecabd85ad9d0e66601cd08ba5");
+
+function accessTemperature($temperature){
+	$temperatures = array(
+		"Low" => "5",
+		"Normal" => "23",
+		"High" => "30"
+	);
+	
+	if($temperature <= $temperatures["Low"]){
+		$temperature_risk = 0;
+		return $temperature_risk;
+	} elseif($temperature <= 29){
+		$temperature_risk = 1;
+		return $temperature_risk;
+	} elseif ($temperature >= $temperatures["High"]){
+		$temperature_risk = 2;
+		return $temperature_risk;
+	} else {
+		$temperature_risk = "UNKNOWN";
+		return $temperature_risk;
+	}
+	
+}
+getWeather("Kariba", "e16cc1edb75e012ecabd85ad9d0e66601cd08ba5");
 accessRisk(25,10);
 accessConditions();
 
