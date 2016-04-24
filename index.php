@@ -1,3 +1,3 @@
 <?php
-    echo "Hello World";
+include 'functions/weather.php';
 ?>
