@@ -22,7 +22,7 @@ function accessRisk($wind){
   if($wind >= 25){
     $risk = 0;
     return $risk;
-  } elseif($wind < $25){
+  } elseif($wind < 25){
     $risk = 1;
     return $risk;
   } else {
